@@ -174,12 +174,12 @@ function App() {
   }, [isAnimating, isLoading]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex flex-col items-center justify-center p-8">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-white mb-2">
+        <h1 className="text-5xl font-bold text-gray-800 mb-2">
           ✨ Fortune Bottle ✨
         </h1>
-        <p className="text-gray-300 text-lg">
+        <p className="text-gray-600 text-lg">
           Tap the bottle to reveal your fortune
         </p>
       </div>
@@ -284,7 +284,7 @@ function App() {
 
       {/* Instructions */}
       {!showFortune && (
-        <div className="text-center text-gray-400 text-sm mt-8">
+        <div className="text-center text-gray-500 text-sm mt-8">
           <p>Click the bottle to crack it open and reveal your fortune!</p>
         </div>
       )}
