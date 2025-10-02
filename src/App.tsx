@@ -177,14 +177,14 @@ function App() {
     <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
       <div className="text-center mb-12">
         <h1 className="text-5xl font-bold text-gray-800 mb-2">
-          ✨ Fortune Bottle ✨
+          🚀 Fortune Spaceship 🚀
         </h1>
         <p className="text-gray-600 text-lg">
-          Tap the bottle to reveal your fortune
+          Launch your spaceship to reveal your cosmic fortune
         </p>
       </div>
 
-      {/* Bottle Container */}
+      {/* Spaceship Container */}
       <div className="relative mb-8">
         {!showFortune && (
           <div
@@ -192,31 +192,39 @@ function App() {
             onClick={handleBottleTap}
           >
             <div
-              className={`w-48 h-64 bg-gradient-to-b from-red-500 to-red-600 border-4 border-red-700 rounded-t-full rounded-b-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-300 ${
+              className={`w-64 h-32 bg-gradient-to-r from-purple-900 via-purple-600 to-purple-900 rounded-full shadow-2xl relative overflow-hidden transform transition-transform duration-300 ${
                 isAnimating ? 'animate-bounce' : ''
               } ${
                 isAnimating ? 'animate-pulse' : ''
               }`}
-              style={{borderRadius: '50% 50% 24px 24px'}}
             >
-              {/* Bottle cap */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2 w-12 h-8 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-t-lg rounded-b-sm"></div>
+              {/* Spaceship nose */}
+              <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-300 rounded-full border-2 border-purple-300"></div>
 
-              {/* Cork */}
-              <div className="absolute top-1.5 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-gradient-to-b from-amber-600 to-amber-700 rounded-full border-2 border-amber-800"></div>
+              {/* Spaceship body details */}
+              <div className="absolute top-4 left-1/4 w-20 h-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+              <div className="absolute bottom-4 left-1/4 w-16 h-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
 
-              {/* Bottle neck */}
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-10 h-12 bg-gradient-to-b from-red-400 to-red-500 rounded-t-sm rounded-b-sm"></div>
+              {/* Spaceship engines */}
+              <div className="absolute -right-8 top-1 transform translate-y-2 w-8 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
+              <div className="absolute -right-8 bottom-1 transform -translate-y-2 w-8 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
 
-              {/* Magic sparkles when animating */}
+              {/* Spaceship cockpit */}
+              <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full border-2 border-cyan-300 shadow-lg">
+                <div className="absolute top-1 left-1 w-2 h-2 bg-white rounded-full opacity-60"></div>
+              </div>
+
+              {/* Engine glow when animating */}
               {isAnimating && (
                 <>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
-                  <div className="absolute top-1/4 left-1/3 transform translate-x-4 translate-y-2 w-1 h-1 bg-white rounded-full animate-pulse"></div>
-                  <div className="absolute top-3/4 right-1/3 transform -translate-x-4 -translate-y-2 w-1 h-1 bg-yellow-200 rounded-full animate-pulse"></div>
-                  <div className="absolute top-1/2 left-1/4 transform -translate-x-2 translate-y-1 w-1 h-1 bg-white rounded-full animate-ping"></div>
+                  <div className="absolute -right-12 top-1 transform translate-y-2 w-12 h-6 bg-gradient-to-r from-blue-400 to-transparent rounded-full opacity-70 animate-pulse"></div>
+                  <div className="absolute -right-12 bottom-1 transform -translate-y-2 w-12 h-6 bg-gradient-to-r from-blue-400 to-transparent rounded-full opacity-70 animate-pulse"></div>
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full animate-ping"></div>
                 </>
               )}
+
+              {/* Laser or energy effect */}
+              <div className="absolute top-1/2 left-full w-16 h-1 bg-gradient-to-l from-red-400 to-transparent rounded-full"></div>
             </div>
           </div>
         )}
@@ -227,9 +235,9 @@ function App() {
         <div className="animate-fade-in mb-12 max-w-md mx-auto">
           <div className="bg-white rounded-2xl shadow-2xl p-8 text-center transform transition-all duration-500 hover:shadow-3xl">
             <div className="mb-4">
-              <div className="text-6xl mb-4">🔮</div>
+              <div className="text-6xl mb-4">🛸</div>
               <h2 className="text-2xl font-bold mb-4" style={{ color: '#283046' }}>
-                Your Fortune
+                Your Cosmic Fortune
               </h2>
             </div>
 
@@ -251,10 +259,9 @@ function App() {
                 <div className="flex flex-col gap-3 mt-6">
                   <button
                     onClick={handleRequestVersion}
-                    className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm"
-                    style={{ backgroundColor: '#34a8eb' }}
+                    className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 text-sm"
                   >
-                    Get Shareable Version
+                    Get Cosmic Version
                   </button>
 
                   {summary && (
@@ -275,10 +282,9 @@ function App() {
         <div className="animate-fade-in">
           <button
             onClick={handleReset}
-            className="px-8 py-3 bg-yellow-400 text-gray-800 font-semibold rounded-lg hover:bg-yellow-500 transition-colors duration-200 shadow-lg transform hover:scale-105"
-            style={{ backgroundColor: '#fbd338' }}
+            className="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200 shadow-lg transform hover:scale-105"
           >
-            Crack Another Bottle
+            Launch Another Mission
           </button>
         </div>
       )}
@@ -286,7 +292,7 @@ function App() {
       {/* Instructions */}
       {!showFortune && (
         <div className="text-center text-gray-500 text-sm mt-8">
-          <p>Click the bottle to crack it open and reveal your fortune!</p>
+          <p>Click the spaceship to launch and reveal your cosmic fortune!</p>
         </div>
       )}
 
