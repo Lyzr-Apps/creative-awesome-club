@@ -192,20 +192,21 @@ function App() {
             onClick={handleBottleTap}
           >
             <div
-              className={`w-64 h-80 bg-gradient-to-b from-red-500 to-red-600 rounded-t-full rounded-b-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-300 ${
+              className={`w-48 h-64 bg-gradient-to-b from-red-500 to-red-600 border-4 border-red-700 rounded-t-full rounded-b-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-300 ${
                 isAnimating ? 'animate-bounce' : ''
               } ${
                 isAnimating ? 'animate-pulse' : ''
               }`}
+              style={{borderRadius: '50% 50% 24px 24px'}}
             >
               {/* Bottle cap */}
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2 w-12 h-8 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-t-lg rounded-b-sm"></div>
 
               {/* Cork */}
-              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-gradient-to-b from-amber-600 to-amber-700 rounded-full"></div>
+              <div className="absolute top-1.5 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-gradient-to-b from-amber-600 to-amber-700 rounded-full border-2 border-amber-800"></div>
 
               {/* Bottle neck */}
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-12 h-16 bg-gradient-to-b from-red-400 to-red-500 rounded-t-sm rounded-b-sm"></div>
+              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-10 h-12 bg-gradient-to-b from-red-400 to-red-500 rounded-t-sm rounded-b-sm"></div>
 
               {/* Magic sparkles when animating */}
               {isAnimating && (
