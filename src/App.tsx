@@ -192,7 +192,7 @@ function App() {
             onClick={handleBottleTap}
           >
             <div
-              className={`w-64 h-80 bg-gradient-to-b from-blue-500 to-blue-600 rounded-t-full rounded-b-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-300 ${
+              className={`w-64 h-80 bg-gradient-to-b from-red-500 to-red-600 rounded-t-full rounded-b-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-300 ${
                 isAnimating ? 'animate-bounce' : ''
               } ${
                 isAnimating ? 'animate-pulse' : ''
@@ -205,7 +205,7 @@ function App() {
               <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-gradient-to-b from-amber-600 to-amber-700 rounded-full"></div>
 
               {/* Bottle neck */}
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-12 h-16 bg-gradient-to-b from-blue-400 to-blue-500 rounded-t-sm rounded-b-sm"></div>
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-12 h-16 bg-gradient-to-b from-red-400 to-red-500 rounded-t-sm rounded-b-sm"></div>
 
               {/* Magic sparkles when animating */}
               {isAnimating && (
