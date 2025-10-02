@@ -36,6 +36,26 @@ function App() {
   const [summary, setSummary] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>('');
+  const [shootingStars, setShootingStars] = useState<Array<{id: number, left: number, delay: number}>>([]);
+
+  // Generate shooting stars
+  useEffect(() => {
+    const generateStars = () => {
+      const stars = [];
+      for (let i = 0; i < 8; i++) {
+        stars.push({
+          id: i,
+          left: Math.random() * 100,
+          delay: Math.random() * 5
+        });
+      }
+      setShootingStars(stars);
+    };
+
+    generateStars();
+    const interval = setInterval(generateStars, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   const generateRandomId = () => {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -174,12 +194,42 @@ function App() {
   }, [isAnimating, isLoading]);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-gray-800 mb-2">
+    <div className="min-h-screen bg-black relative overflow-hidden flex flex-col items-center justify-center p-8">
+      {/* Shooting Stars Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {shootingStars.map((star) => (
+          <div
+            key={star.id}
+            className="absolute w-1 h-1 bg-white rounded-full shadow-lg"
+            style={{
+              left: `${star.left}%`,
+              top: `-${20}px`,
+              animationDelay: `${star.delay}s`,
+              animation: `shooting-star 3s linear infinite`,
+              boxShadow: '0 0 6px #fff, 0 0 10px #fff, 0 0 14px #fff'
+            }}
+          ></div>
+        ))}
+
+        {/* Static stars background */}
+        {Array.from({length: 50}).map((_, i) => (
+          <div
+            key={`star-${i}`}
+            className="absolute w-1 h-1 bg-white rounded-full opacity-60"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animation: `twinkle ${2 + Math.random() * 2}s infinite`
+            }}
+          ></div>
+        ))}
+      </div>
+      <div className="text-center mb-12 relative z-10">
+        <h1 className="text-5xl font-bold text-white mb-2">
           🚀 Fortune Spaceship 🚀
         </h1>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-300 text-lg">
           Launch your spaceship to reveal your cosmic fortune
         </p>
       </div>
@@ -232,42 +282,43 @@ function App() {
 
       {/* Fortune Card */}
       {showFortune && (
-        <div className="animate-fade-in mb-12 max-w-md mx-auto">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 text-center transform transition-all duration-500 hover:shadow-3xl">
+        <div className="animate-fade-in mb-12 max-w-md mx-auto relative z-10">
+          <div className="bg-gradient-to-br from-purple-900 to-indigo-900 bg-opacity-80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-center transform transition-all duration-500 hover:shadow-3xl border border-purple-400">
             <div className="mb-4">
               <div className="text-6xl mb-4">🛸</div>
-              <h2 className="text-2xl font-bold mb-4" style={{ color: '#283046' }}>
+              <h2 className="text-2xl font-bold mb-4 text-white"
+              >
                 Your Cosmic Fortune
               </h2>
             </div>
 
             {isLoading ? (
               <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                <span className="ml-3 text-gray-600">Revealing your destiny...</span>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-400"></div>
+                <span className="ml-3 text-purple-200">Revealing your cosmic destiny...</span>
               </div>
             ) : error ? (
-              <div className="text-red-500 mb-4">
+              <div className="text-red-300 mb-4 font-semibold">
                 {error}
               </div>
             ) : (
               <div className="space-y-4">
-                <p className="text-lg leading-relaxed" style={{ color: '#283046' }}>
+                <p className="text-lg leading-relaxed text-purple-100">
                   {fortune}
                 </p>
 
                 <div className="flex flex-col gap-3 mt-6">
                   <button
                     onClick={handleRequestVersion}
-                    className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 text-sm"
+                    className="px-6 py-2 bg-purple-600 text-purple-100 rounded-lg hover:bg-purple-700 transition-colors duration-200 text-sm"
                   >
                     Get Cosmic Version
                   </button>
 
                   {summary && (
-                    <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-700 font-medium">Share Version:</p>
-                      <p className="text-sm text-gray-600 mt-2">{summary}</p>
+                    <div className="mt-4 p-4 bg-purple-800 bg-opacity-30 rounded-lg border border-purple-400">
+                      <p className="text-sm text-purple-200 font-medium">Cosmic Version:</p>
+                      <p className="text-sm text-purple-100 mt-2">{summary}</p>
                     </div>
                   )}
                 </div>
@@ -282,7 +333,7 @@ function App() {
         <div className="animate-fade-in">
           <button
             onClick={handleReset}
-            className="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200 shadow-lg transform hover:scale-105"
+            className="px-8 py-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-600 transition-colors duration-200 shadow-lg transform hover:scale-105"
           >
             Launch Another Mission
           </button>
@@ -291,12 +342,37 @@ function App() {
 
       {/* Instructions */}
       {!showFortune && (
-        <div className="text-center text-gray-500 text-sm mt-8">
-          <p>Click the spaceship to launch and reveal your cosmic fortune!</p>
+        <div className="text-center text-gray-400 text-sm mt-8 relative z-10">
+          <p>Click the spaceship to launch through the stars!</p>
         </div>
       )}
 
-      <style jsx>{`
+
+      <style jsx global>{`
+        @keyframes shooting-star {
+          0% {
+            transform: translateX(-100px) translateY(-20px) rotate(45deg);
+            opacity: 1;
+          }
+          70% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.2; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+          background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
+          box-shadow: 0 0 15px #fff, 0 0 25px rgba(255,255,255,0.8) !important;
+        }
+
         @keyframes fade-in {
           from {
             opacity: 0;
